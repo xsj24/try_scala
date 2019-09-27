@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id "scala"
+}
+
+group 'com.github.xsj'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.scala-lang:scala-library:2.11.12'
+    testImplementation 'org.scalatest:scalatest_2.11:3.0.0'
+    testImplementation('junit:junit:4.12') {
+        exclude group: 'org.hamcrest'
+    }
+    testCompile('org.hamcrest:hamcrest-all:1.3')
+}
