@@ -24,4 +24,12 @@ class StringTest {
     assertThat(result, is("xsj is 170.46 meters tall"))
   }
 
+
+  @Test
+  def testIsUpper(): Unit = {
+    val str = "hellO"
+    // _.isUpper 等价于 c => c.isUpper
+    assertThat(str.exists(_.isUpper), is(true))
+  }
+
 }
