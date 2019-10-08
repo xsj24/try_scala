@@ -5,6 +5,8 @@ import org.junit.Test
 import org.junit.Assert.assertThat
 import org.hamcrest.Matchers._
 
+import scala.collection.mutable.ListBuffer
+
 class ListTest {
 
   @Test
@@ -44,6 +46,28 @@ class ListTest {
         .append(',')
     }
     assertThat(builder.toString(), is("1,2,3,4,"))
+  }
+
+
+  @Test
+  def testMkString(): Unit = {
+    val list = List(1, 2, 3, 4)
+    assertThat(list.mkString("[", ",", "]"), is("[1,2,3,4]"))
+  }
+
+  @Test
+  def testRange(): Unit = {
+    assertThat((1 to 10).size, is(10))
+    assertThat((1 until 10).size, is(9))
+  }
+
+
+
+  @Test
+  def testListBuffer(): Unit = {
+    val buffer = ListBuffer.empty[Int]
+    buffer += 1
+    assertThat(buffer.size, is(1))
   }
 
 }
