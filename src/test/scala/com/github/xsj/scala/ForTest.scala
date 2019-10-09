@@ -20,4 +20,11 @@ class ForTest {
     }
   }
 
+  @Test
+  def testYield(): Unit = {
+    // 等价于 Python [n for n in range(10)]
+    val seq: Seq[Int] = for (n <- 1 to 10 ) yield n
+    assertThat(seq.size, is(10))
+  }
+
 }

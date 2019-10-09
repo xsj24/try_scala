@@ -36,7 +36,7 @@ class ArrayTest {
 
 
     assertThat(parseArgs("-d 12 -h xsj,sdf".split("\\s")),
-      is(Map(("-d" -> List("12")), ("-h" -> List("xsj", "sdf")))))
+      is(Map("-d" -> List("12"), "-h" -> List("xsj", "sdf"))))
 
   }
 
@@ -45,7 +45,7 @@ class ArrayTest {
   def testArrayBuffer(): Unit = {
     // 不定长 array
     val buffer = new ArrayBuffer[Int]()
-    buffer += 1;
+    buffer += 1
     buffer.append(2, 3, 4)
     buffer ++= Array(5, 6)
     assertThat(buffer.size, is(6))
