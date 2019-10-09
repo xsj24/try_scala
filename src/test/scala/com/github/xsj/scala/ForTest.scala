@@ -27,4 +27,22 @@ class ForTest {
     assertThat(seq.size, is(10))
   }
 
+  @Test
+  def testYieldBlock(): Unit = {
+    val map = Map("-h" -> List("method=get", "type=json"))
+
+    def splitByEqual(nameValue:String) = nameValue.split("=")
+
+    val headers = for (elem <- map("-h")) yield {
+      val tokens = splitByEqual(elem)
+      (tokens(0), tokens(1))
+    }
+    assertThat(headers.size, is(2))
+    assertThat(headers,
+      is(List(("method", "get"), ("type", "json")))
+    )
+
+  }
+
+
 }
