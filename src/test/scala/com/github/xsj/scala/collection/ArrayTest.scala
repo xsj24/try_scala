@@ -53,4 +53,14 @@ class ArrayTest {
     assertThat(buffer.toArray, is(Array(1, 2, 3, 4, 5, 6)))
   }
 
+  @Test
+  def testAsList(): Unit = {
+    val list = List(1, 2, 3)
+    val javaList = java.util.Arrays.asList(list.toArray)
+    assertThat(classOf[java.util.List[_]].isAssignableFrom(classOf[List[_]]), is(false))
+
+    assertThat(javaList.size(), is(1))
+    assertThat(java.util.Arrays.asList(list.toArray:_*).size(), is(3))
+  }
+
 }

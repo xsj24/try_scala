@@ -1,10 +1,10 @@
 package com.github.xsj.scala.clazz
 
+import com.google.common.base.Preconditions
 import org.junit.Test
 import org.junit.Assert.assertThat
 import org.hamcrest.Matchers._
 
-import scala.annotation.meta.{beanGetter, beanSetter}
 import scala.beans.BeanProperty
 
 class ClassOfTest {
@@ -15,8 +15,7 @@ class ClassOfTest {
   @Test
   def testIntro(): Unit = {
     assertThat(classOf[Int] == Integer.TYPE, is(true))
-    val user = new User()
-    user.setName("xsj")
+    val user = new User("xsj", 12)
     println(user)
   }
 
@@ -38,6 +37,12 @@ object ClassOfTest {
     @BeanProperty
     var age: Int = _
 
+    def this(name: String, age: Int) = {
+      this()
+      Preconditions.checkArgument(name != null && !name.isEmpty, "name required", null)
+      setAge(age)
+      setName(name)
+    }
 
   }
 }
